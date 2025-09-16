@@ -6,3 +6,4 @@ dj-database-url
 psycopg2-binary
 djongo==1.3.6
 pymongo[srv]==4.3.3
+python_version=="3.11.*"
