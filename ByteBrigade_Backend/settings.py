@@ -31,8 +31,10 @@ DEBUG = True
 
 # CORS Configuration for development
 CORS_ALLOWED_ORIGINS = [
-    "https://bytebrigade.vercel.app",
+    "https://bytebrigade.vercel.app",     # frontend
+    "https://byte-brigade.onrender.com", # backend API
 ]
+
 
 
 # Allow credentials to be included in CORS requests
