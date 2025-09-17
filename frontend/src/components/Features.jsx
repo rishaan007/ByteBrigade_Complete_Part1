@@ -87,7 +87,7 @@ const Features = ({ onFindSquaddies }) => (
       </div>
       <div id="about">
       <BentoTilt  className="border-hsla relative mb-7 h-96 w-full overflow-hidden rounded-md md:h-[65vh]">
-        <BentoCard src="videos/feature-1.mp4" title={<>Abo<b>u</b>t</>} description="Byte Brigade is a community-driven platform where tech enthusiasts, coders, and innovators discover hackathons, collaborate on projects, gain mentorship, and showcase their skills—turning ideas into real-world solutions." isComingSoon />
+        <BentoCard src="videos/feature-1.mp4" title={<>Abo<b>u</b>t</>} description="Byte Brigade is a community-driven platform where tech enthusiasts, coders, and innovators discover hackathons, collaborate on projects, gain mentorship, and showcase their skills—turning ideas into real-world solutions." />
       </BentoTilt>
       </div>
       <div id = "features" className="grid h-auto w-full grid-cols-1 gap-7 md:h-[135vh] md:grid-cols-2 md:grid-rows-3">
