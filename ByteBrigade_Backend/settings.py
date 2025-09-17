@@ -123,9 +123,15 @@ import os
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'bytebrigade_db',  # same as your Atlas DB name
+        'NAME': 'bytebrigade_db',
         'CLIENT': {
-            'host': os.environ.get('MONGO_URL', 'mongodb+srv://bytebrigade_db:bytebrigade007@cluster0.mpgbkwl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0' ),  # URI from Atlas
+            'host': os.environ.get(
+                'MONGO_URL', 
+                'mongodb+srv://bytebrigade_db:bytebrigade007@cluster0.mpgbkwl.mongodb.net/bytebrigade_db?retryWrites=true&w=majority&appName=Cluster0'
+            ),
+            'serverSelectionTimeoutMS': 10000,  # 10 second timeout
+            'connectTimeoutMS': 10000,
+            'socketTimeoutMS': 10000,
         }
     }
 }
