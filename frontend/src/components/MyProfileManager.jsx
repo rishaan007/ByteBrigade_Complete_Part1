@@ -79,7 +79,7 @@ const MyProfileManager = ({ currentUserId, onNavigateBack, onUpdateSuccess }) =>
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50/70 backdrop-blur-md">
         <div className="max-w-6xl mx-auto py-8 px-4">
           <div className="flex items-center mb-8">
             <button
