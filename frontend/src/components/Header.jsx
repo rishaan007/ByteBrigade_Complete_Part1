@@ -8,12 +8,12 @@ const Header = () => {
         <div className="p-2 bg-blue-500 rounded-lg">
           <Users className="w-6 h-6 text-white" />
         </div>
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h1 className="text-2xl font-bold text-white">
           ByteBrigade Team Builder
         </h1>
       </div>
       
-      <p className="text-gray-600 max-w-xl mx-auto mb-4">
+      <p className="text-gray-400 max-w-xl mx-auto mb-4">
         Find your perfect hackathon teammates based on skills and experience
       </p>
       
