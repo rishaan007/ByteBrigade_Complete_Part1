@@ -92,10 +92,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "https://bytebrigade.vercel.app",
-]
-
 
 ROOT_URLCONF = 'ByteBrigade_Backend.urls'
 
