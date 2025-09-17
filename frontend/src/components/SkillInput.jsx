@@ -28,11 +28,11 @@ const SkillInput = ({
   };
 
   const handleSuggestionClick = (suggestion) => {
+    // Fill the input with the clicked suggestion (no auto-add)
     const syntheticEvent = {
       target: { value: suggestion }
     };
     onChange(syntheticEvent);
-    setTimeout(() => onAdd(), 10);
   };
 
   // FIXED: Convert skill objects to strings for display
