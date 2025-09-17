@@ -70,7 +70,7 @@ const NavBar = ({ onNavigateToProfile }) => {
       <header className="absolute top-1/2 w-full -translate-y-1/2">
         <nav className="flex size-full items-center justify-between p-4">
           {/* Logo */}
-          <div id =" home" className="flex items-center gap-3">
+          <div id=" home" className="flex items-center gap-3">
             <div className="flex items-center justify-center">
               <img src="/img/logo.png" alt="Logo" className="w-20 h-20 object-contain" />
 
@@ -80,8 +80,8 @@ const NavBar = ({ onNavigateToProfile }) => {
             </span>
           </div>
 
-          {/* Navigation Links */}
-          <div className="flex h-full items-center">
+          {/* Desktop Navigation */}
+          <div className="hidden sm:flex h-full items-center">
             <div className="ml-10 flex h-full items-center space-x-6">
               {navItems.map((item, index) => (
                 <a
@@ -94,7 +94,7 @@ const NavBar = ({ onNavigateToProfile }) => {
               ))}
             </div>
 
-            {/* Audio Toggle */}
+            {/* Audio Toggle (Desktop) */}
             <button
               onClick={toggleAudioIndicator}
               className="ml-6 p-2 rounded-lg bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
@@ -106,7 +106,7 @@ const NavBar = ({ onNavigateToProfile }) => {
               )}
             </button>
 
-            {/* Profile Button */}
+            {/* Profile Button (Desktop) */}
             {onNavigateToProfile && (
               <button
                 onClick={onNavigateToProfile}
@@ -117,6 +117,32 @@ const NavBar = ({ onNavigateToProfile }) => {
               </button>
             )}
           </div>
+
+          {/* Mobile Right-side Actions */}
+          <div className="flex items-center gap-3 sm:hidden">
+            {/* Music Button (Mobile) */}
+            <button
+              onClick={toggleAudioIndicator}
+              className="p-2 rounded-lg bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
+            >
+              {isAudioPlaying ? (
+                <Volume2 className="w-5 h-5 text-white" />
+              ) : (
+                <VolumeX className="w-5 h-5 text-white" />
+              )}
+            </button>
+
+            {/* Profile Button (Mobile) */}
+            {onNavigateToProfile && (
+              <button
+                onClick={onNavigateToProfile}
+                className="px-3 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-medium transition-colors flex items-center gap-2"
+              >
+                <User className="w-4 h-4" />
+              </button>
+            )}
+          </div>
+
 
           {/* Audio Element */}
           <audio
