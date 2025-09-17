@@ -125,7 +125,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'bytebrigade_db',  # same as your Atlas DB name
         'CLIENT': {
-            'host': os.environ.get('MONGO_URL', 'mongodb+srv://bytebrigade_db:<bytebrigade007>@cluster0.mpgbkwl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0' ),  # URI from Atlas
+            'host': os.environ.get('MONGO_URL', 'mongodb+srv://bytebrigade_db:bytebrigade007@cluster0.mpgbkwl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0' ),  # URI from Atlas
         }
     }
 }
