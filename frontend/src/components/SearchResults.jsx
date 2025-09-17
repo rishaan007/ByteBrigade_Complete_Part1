@@ -57,9 +57,7 @@ const SearchResults = ({
   return (
     <div className="search-results-initial">
       <div className="search-instruction">
-        <Search size={48} color="#667eea" />
-        <h3>Find Your Perfect Teammates</h3>
-        <p>Use the search form above to find teammates with the skills you need.</p>
+        
         
         {allProfiles && allProfiles.length > 0 && (
           <>
