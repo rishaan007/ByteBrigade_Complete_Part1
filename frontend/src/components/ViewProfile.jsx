@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, User, Mail, School, Calendar, MapPin } from 'lucide-react';
+import { ArrowLeft, User, Mail, School, Calendar, MapPin, Laugh } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTrophy } from 'react-icons/fa';
 import SkillTag from './SkillTag';
 import './HackathonTeamBuilder.css';
@@ -14,14 +14,14 @@ const ViewProfile = ({ profile, onClose }) => {
   return (
     <div className="profile-manager-container">
       <div className="top-bar">
-        <button 
+        <button
           className="back-btn"
           onClick={onClose}
         >
           <ArrowLeft size={20} />
           Back to Search
         </button>
-        
+
         <div className="header-content">
           <div className="header-title">
             <User className="header-icon" size={24} />
@@ -46,28 +46,36 @@ const ViewProfile = ({ profile, onClose }) => {
                   <Mail size={18} />
                   <span>{profile.email || 'Not provided'}</span>
                 </div>
-                
+
                 <div className="info-item">
                   <School size={18} />
                   <span>{profile.college_name || 'Not provided'}</span>
                 </div>
-                
+
                 <div className="info-item">
                   <Calendar size={18} />
                   <span>
-                    {profile.year 
-                      ? profile.year === 'graduate' 
-                        ? 'Graduate' 
-                        : `${profile.year}${profile.year === '1' ? 'st' : 
-                            profile.year === '2' ? 'nd' : 
-                            profile.year === '3' ? 'rd' : 'th'} Year`
+                    {profile.year
+                      ? profile.year === 'graduate'
+                        ? 'Graduate'
+                        : (() => {
+                          const y = parseInt(profile.year, 10);
+                          if ([11, 12, 13].includes(y % 100)) return `${y}th Year`;
+                          switch (y % 10) {
+                            case 1: return `${y}st Year`;
+                            case 2: return `${y}nd Year`;
+                            case 3: return `${y}rd Year`;
+                            default: return `${y}th Year`;
+                          }
+                        })()
                       : 'Not provided'
                     }
+
                   </span>
                 </div>
-                
+
                 <div className="info-item">
-                  <MapPin size={18} />
+                  <Laugh size={18} />
                   <span>{profile.gender || 'Not provided'}</span>
                 </div>
               </div>
@@ -87,9 +95,9 @@ const ViewProfile = ({ profile, onClose }) => {
                 <h3>Social Links</h3>
                 <div className="social-links">
                   {profile.linkedin_url && (
-                    <a 
-                      href={profile.linkedin_url} 
-                      target="_blank" 
+                    <a
+                      href={profile.linkedin_url}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="social-link"
                     >
@@ -98,9 +106,9 @@ const ViewProfile = ({ profile, onClose }) => {
                     </a>
                   )}
                   {profile.github_url && (
-                    <a 
-                      href={profile.github_url} 
-                      target="_blank" 
+                    <a
+                      href={profile.github_url}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="social-link"
                     >
@@ -118,9 +126,9 @@ const ViewProfile = ({ profile, onClose }) => {
               <div className="skills-display">
                 {knownSkills.length > 0 ? (
                   knownSkills.map((skill, index) => (
-                    <SkillTag 
-                      key={index} 
-                      skill={skill} 
+                    <SkillTag
+                      key={index}
+                      skill={skill}
                       removable={false}
                       type="known"
                     />
@@ -136,9 +144,9 @@ const ViewProfile = ({ profile, onClose }) => {
               <div className="skills-display">
                 {desiredSkills.length > 0 ? (
                   desiredSkills.map((skill, index) => (
-                    <SkillTag 
-                      key={index} 
-                      skill={skill} 
+                    <SkillTag
+                      key={index}
+                      skill={skill}
                       removable={false}
                       type="desired"
                     />
