@@ -14,3 +14,11 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ByteBrigade_Backend.settings')
 
 application = get_wsgi_application()
+
+from pymongo import MongoClient
+import os
+
+uri = os.environ.get("MONGODB_URI")
+client = MongoClient(uri)
+print("✅ Connected to:", client.list_database_names())
+
