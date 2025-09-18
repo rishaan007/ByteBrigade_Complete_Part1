@@ -13,6 +13,22 @@ body {
   font-family: "General Sans", sans-serif;
 }
 
+/* scroll claims */
+@keyframes scroll-ltr {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll-ltr {
+  animation: scroll-ltr 60s linear infinite;
+}
+
+.animate-scroll-ltr.paused {
+  animation-play-state: paused;
+}
+
+/*----------*/
+
 @layer base {
   @font-face {
     font-family: "circular-web";
