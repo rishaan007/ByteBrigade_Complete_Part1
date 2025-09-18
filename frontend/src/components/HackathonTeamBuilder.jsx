@@ -4,7 +4,7 @@ import NavigationTabs from './NavigationTabs';
 import ProfileForm from './ProfileForm';
 import SearchForm from './SearchForm';
 import SearchResults from './SearchResults';
-import ViewProfile from './ViewProfile'; 
+import ViewProfile from './ViewProfile';
 import apiService from '../api/apiService';
 import './HackathonTeamBuilder.css';
 import { ArrowLeft, User, Lock, UserPlus, LogOut, AlertCircle } from 'lucide-react';
@@ -15,11 +15,11 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
   const [currentUser, setCurrentUser] = useState(null);
   const [authMode, setAuthMode] = useState('login');
   const [authLoading, setAuthLoading] = useState(false);
-  
+
   // Form states
   const [loginData, setLoginData] = useState({ username: '', password: '' });
   const [registerData, setRegisterData] = useState({ username: '', password: '', name: '', email: '' });
-  
+
   // App states
   const [activeTab, setActiveTab] = useState('profile');
   const [profiles, setProfiles] = useState([]);
@@ -53,18 +53,18 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
   // 🔧 FIXED: Check for existing profile after login
   const checkExistingProfile = async (userId) => {
     if (!userId) return;
-    
+
     try {
       setLoading(true);
       const existingProfile = await apiService.getProfileById(userId);
       if (existingProfile) {
         console.log('Existing profile found:', existingProfile);
         setUserProfile(existingProfile);
-        
+
         // Check if profile has required fields filled
         const hasBasicInfo = existingProfile.name && existingProfile.email;
         const hasSkills = existingProfile.known_skills && existingProfile.known_skills.length > 0;
-        
+
         if (hasBasicInfo && hasSkills) {
           setProfileExists(true);
           setActiveTab('search');
@@ -123,7 +123,7 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
       setIsLoggedIn(true);
       localStorage.setItem('currentUser', JSON.stringify(userData));
       setLoginData({ username: '', password: '' });
-      
+
       await checkExistingProfile(userData.id);
     } catch (err) {
       setError(err.message || 'Login failed');
@@ -134,8 +134,8 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    if (!registerData.username.trim() || !registerData.password.trim() || 
-        !registerData.name.trim() || !registerData.email.trim()) {
+    if (!registerData.username.trim() || !registerData.password.trim() ||
+      !registerData.name.trim() || !registerData.email.trim()) {
       setError('Please fill in all fields');
       return;
     }
@@ -158,7 +158,7 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
       setIsLoggedIn(true);
       localStorage.setItem('currentUser', JSON.stringify(userData));
       setRegisterData({ username: '', password: '', name: '', email: '' });
-      
+
       setProfileExists(false);
       setActiveTab('profile');
     } catch (err) {
@@ -195,22 +195,22 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
     setError(null);
     try {
       console.log(' Updating user profile for:', currentUser.id);
-      
+
       // Use updateUserProfile instead of createProfile
       const updatedProfile = await apiService.updateUserProfile(currentUser.id, profileData);
       setUserProfile(updatedProfile);
       setProfileExists(true);
-      
+
       if (onProfileCreated) {
         onProfileCreated(updatedProfile.id);
       }
-      
+
       setActiveTab('search');
-      
+
       // Success message
       const message = userProfile ? 'Profile updated successfully!' : 'Profile created successfully! You can now search for teammates.';
       alert(message);
-      
+
     } catch (err) {
       console.error(' Profile submission error:', err);
       setError('Failed to save profile. Please check your information and try again.');
@@ -242,10 +242,10 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
       alert('You already have a profile! Use the Manage Profile section to update your details.');
       return;
     }
-    
+
     setActiveTab(tab);
     setError(null);
-    
+
     if (tab === 'search') {
       setHasSearched(false);
       setSearchResults([]);
@@ -255,7 +255,7 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
   // NEW: Show ViewProfile if selected
   if (showViewProfile && selectedProfile) {
     return (
-      <ViewProfile 
+      <ViewProfile
         profile={selectedProfile}
         onClose={handleCloseViewProfile}
       />
@@ -306,7 +306,7 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
                       className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                       placeholder="Enter your username"
                       value={loginData.username}
-                      onChange={(e) => setLoginData({...loginData, username: e.target.value})}
+                      onChange={(e) => setLoginData({ ...loginData, username: e.target.value })}
                     />
                   </div>
                 </div>
@@ -320,7 +320,7 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
                       className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                       placeholder="Enter your password"
                       value={loginData.password}
-                      onChange={(e) => setLoginData({...loginData, password: e.target.value})}
+                      onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
                     />
                   </div>
                 </div>
@@ -342,7 +342,7 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
                     className="block w-full px-3 py-3 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="Enter your full name"
                     value={registerData.name}
-                    onChange={(e) => setRegisterData({...registerData, name: e.target.value})}
+                    onChange={(e) => setRegisterData({ ...registerData, name: e.target.value })}
                   />
                 </div>
                 <div>
@@ -353,7 +353,7 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
                     className="block w-full px-3 py-3 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                     placeholder="Enter your email"
                     value={registerData.email}
-                    onChange={(e) => setRegisterData({...registerData, email: e.target.value})}
+                    onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
                   />
                 </div>
                 <div>
@@ -366,7 +366,7 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
                       className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                       placeholder="Choose a username"
                       value={registerData.username}
-                      onChange={(e) => setRegisterData({...registerData, username: e.target.value})}
+                      onChange={(e) => setRegisterData({ ...registerData, username: e.target.value })}
                     />
                   </div>
                 </div>
@@ -381,7 +381,7 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
                       className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                       placeholder="Create a password (min 6 characters)"
                       value={registerData.password}
-                      onChange={(e) => setRegisterData({...registerData, password: e.target.value})}
+                      onChange={(e) => setRegisterData({ ...registerData, password: e.target.value })}
                     />
                   </div>
                 </div>
@@ -441,10 +441,11 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
   return (
     <div className="min-h-screen  from-slate-900 via-blue-800 to-black bg-gradient-to-br">
       {/* Clean Header with user info */}
-      <div className="bg-white shadow-sm border-b">
+      
+      <div className=" bg-[rgb(246,250,252)] backdrop-blur-md shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            
+
             {/* Left side - Back button */}
             <div>
               {onNavigateBack && (
@@ -453,11 +454,13 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
                   className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors px-3 py-2 rounded-lg hover:bg-gray-100"
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  <span className="font-medium">Back to Home</span>
+                  {/* Hide text on small screens, show from md+ */}
+                  <span className="hidden md:inline font-small">Back to Home</span>
                 </button>
               )}
             </div>
-            
+
+
             {/* Right side - User info and logout */}
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-3">
@@ -471,7 +474,7 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
                   </span>
                 </div>
               </div>
-              
+
               <button
                 onClick={handleLogout}
                 className="flex items-center space-x-1 text-red-600 hover:text-red-700 transition-colors px-3 py-2 rounded-lg hover:bg-red-50"
@@ -480,7 +483,7 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
                 <span className="text-sm font-medium">Logout</span>
               </button>
             </div>
-            
+
           </div>
         </div>
       </div>
@@ -488,7 +491,7 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Always show Header component */}
         <Header />
-        
+
         {/* Show different content based on profile status */}
         {!profileExists ? (
           <div className="text-center mb-8 bg-white rounded-xl p-8 shadow-lg border border-gray-200">
@@ -499,8 +502,8 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
             <p className="text-gray-600">Add your skills and information to find teammates</p>
           </div>
         ) : (
-          <NavigationTabs 
-            activeTab={activeTab} 
+          <NavigationTabs
+            activeTab={activeTab}
             onTabChange={handleTabChange}
             availableTabs={['search', 'manage']}
           />
@@ -526,7 +529,7 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
                 <UserPlus className="w-6 h-6 text-blue-600" />
                 <h2 className="text-2xl font-bold text-gray-900">Complete Your Profile</h2>
               </div>
-              <ProfileForm 
+              <ProfileForm
                 onSubmit={handleProfileSubmit}
                 editingProfile={userProfile}
                 loading={loading}
@@ -541,18 +544,18 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
                   <span className="text-2xl">🔍</span>
                   <h2 className="text-2xl font-bold text-gray-900">Find Teammates</h2>
                 </div>
-                <SearchForm 
+                <SearchForm
                   onSearch={handleSearch}
                   loading={loading}
                 />
               </div>
-              
+
               <SearchResults
                 searchResults={searchResults}
                 allProfiles={[]}
                 hasSearched={hasSearched}
                 onCreateProfile={() => setActiveTab('profile')}
-                onViewProfile={handleViewProfile} 
+                onViewProfile={handleViewProfile}
                 loading={loading}
               />
             </div>
@@ -564,7 +567,7 @@ const HackathonTeamBuilder = ({ onProfileCreated, currentUserId, onNavigateBack,
                 <span className="text-2xl">⚙️</span>
                 <h2 className="text-2xl font-bold text-gray-900">Manage Your Profile</h2>
               </div>
-              <ProfileForm 
+              <ProfileForm
                 onSubmit={handleProfileSubmit}
                 editingProfile={userProfile}
                 loading={loading}
