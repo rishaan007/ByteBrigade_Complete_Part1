@@ -113,7 +113,7 @@ const NavBar = ({ onNavigateToProfile }) => {
                 className="ml-4 flex items-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-lg text-white font-medium transition-colors"
               >
                 <User className="w-4 h-4" />
-                <span className="hidden sm:block">Team Builder</span>
+                <span className="hidden sm:block">Squad</span>
               </button>
             )}
           </div>
