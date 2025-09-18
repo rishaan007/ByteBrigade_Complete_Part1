@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, User, Mail, School, Calendar, MapPin, Laugh } from 'lucide-react';
+import { ArrowLeft, User, Mail, School, Calendar, Laugh } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTrophy } from 'react-icons/fa';
 import SkillTag from './SkillTag';
 import './HackathonTeamBuilder.css';
@@ -12,26 +12,29 @@ const ViewProfile = ({ profile, onClose }) => {
   const hackathonExperiences = profile.hackathon_experiences || [];
 
   return (
-    <div className="profile-manager-container">
+    <div className="profile-manager-container from-slate-900 via-blue-800 to-black bg-gradient-to-br w-100 min-h-screen">
       <div className="top-bar">
         <button
-          className="back-btn"
+          className="back-btn flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors px-2 py-1 rounded-lg "
           onClick={onClose}
         >
-          <ArrowLeft size={20} />
-          Back to Search
+          <ArrowLeft className="w-4 h-4 md:w-5 md:h-5" />
+
+          {/* Hide text on small screens */}
+          <span className="hidden md:inline font-small">Back to Search</span>
         </button>
 
         <div className="header-content">
           <div className="header-title">
-            <User className="header-icon" size={24} />
+            <User className="header-icon" size={18} />
             <h1>Profile Details</h1>
             <p>View teammate profile information</p>
           </div>
         </div>
       </div>
 
-      <div className="app-container">
+
+<div className="app-container from-slate-900 via-blue-800 to-black bg-gradient-to-br !border-none">
         <div className="content-wrapper">
           <div className="form-card">
             <h2 className="form-title">
