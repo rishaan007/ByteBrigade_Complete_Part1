@@ -304,7 +304,23 @@ const ProfileForm = ({ onSubmit, onUpdate = null, editingProfile = null, loading
               </select>
             </div>
             
-            <div className="flex items-center">
+            {/* <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="isBeginner"
+                id="isBeginner"
+                checked={profile.isBeginner}
+                onChange={handleFieldChange}
+                className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              />
+              <label htmlFor="isBeginner" className="ml-2 text-sm font-medium text-gray-700">
+                I am a beginner looking to learn
+              </label>
+            </div> */}
+          </div>
+        </div>
+        <div className="bg-gray-50 rounded-lg p-6">
+          <div className="flex items-center">
               <input
                 type="checkbox"
                 name="isBeginner"
@@ -317,7 +333,6 @@ const ProfileForm = ({ onSubmit, onUpdate = null, editingProfile = null, loading
                 I am a beginner looking to learn
               </label>
             </div>
-          </div>
         </div>
 
         {/* Social Links */}
